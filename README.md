@@ -21,6 +21,15 @@ TODO:
     - There is a need to write unit tests.
 
 
+    - Code will check if model exists in the resources, there could be parameters which 
+        checks user wants to use the resources only
+        otherwise it will check the bucket,
+        final option will be to check the Huggingface and download the model.
+
+
+    - Candidate labels could be parametrized
+
+
 Some Possible improvements:
 
     - OnnxRuntime Model
