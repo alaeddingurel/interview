@@ -1,4 +1,4 @@
-# interview
+# TEB Case Project
 This project is for the interview for TEB
 
 TODO:
@@ -17,10 +17,23 @@ TODO:
     - We'll use FastAPI and We can also
         use Swagger as interface for our platform which is accessible via,
         https://localhost:port/docs
-
+    
+    - There is a need to write unit tests.
 
 
 Some Possible improvements:
 
     - OnnxRuntime Model
     - Bulk Inference
+
+
+
+Available Models:
+    
+    - models--facebook--bart-base
+    - facebook/bart-large-mnli 
+
+    TODO:
+        - we could add other models.
+
+
