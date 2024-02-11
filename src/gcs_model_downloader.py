@@ -1,11 +1,14 @@
 from google.cloud import storage
 from google.api_core import page_iterator
 from google.cloud import storage
+from src.classifier import ZeroShotClassifier
+from src.utils import get_random_file
+
 import os
 
 
 class GCSModelDownloader:
-    def __init__(self, bucket_name, model_name, local_model_path):
+    def __init__(self, bucket_name: str, model_name: str, local_model_path: str):
         """
         Initializes a GCSModelDownloader instance.
 
@@ -19,6 +22,7 @@ class GCSModelDownloader:
         self.local_model_path = local_model_path
         # We're using anonymous client because our bucket is public
         self.storage_client = storage.Client.create_anonymous_client()
+        self.model_file_path = os.path.join(local_model_path, model_name)
 
     def download_model(self):
         """
@@ -32,12 +36,12 @@ class GCSModelDownloader:
 
         blobs = bucket.list_blobs(prefix=self.model_name)
 
-        # Download blob to local file
+        # Downloading blob
         for blob in blobs:
-            # Create the destination directory if it doesn't exist
+            # Check destination directory if not create it.
             os.makedirs(os.path.dirname(os.path.join(self.local_model_path, blob.name)), exist_ok=True)
 
-            # Download the blob to the local directory
+            # Download the file into local.
             blob.download_to_filename(os.path.join(self.local_model_path, blob.name))
 
             print(f"Downloaded {blob.name} to {self.local_model_path}")
@@ -72,25 +76,56 @@ class GCSModelDownloader:
             return False
 
     def check_model_download(self):
+        """
+        Check if a model exists in the GCS bucket
+        """
         if self.check_model_exists():
             self.download_model()
         else:
             print(f"Model {self.model_name} does not exist in bucket {self.bucket_name}")
+
+    def load_model(self):
+        """
+        Load the model
+        :return:
+        """
+        snapshots = os.path.join(self.model_file_path, "snapshots/")
+        random_file_path = get_random_file(snapshots)
+        # print(self.model_file_path)
+        # print(snapshots)
+        # print(random_file_path)
+        return ZeroShotClassifier(model_path=random_file_path)
+
+
 class HuggingFaceModelDownloader:
-    def __init__(self, model_name, local_model_path):
+    def __init__(self, model_name: str, local_model_path: str):
         self.model_name = model_name
         self.local_model_path = local_model_path
+        self.model_file_path = os.path.join(local_model_path, model_name)
 
     def check_model_exists(self):
+        """
+        Check model exist in Huggingface Hub
+        :return:
+        """
         pass
+
+    def load_model(self):
+        """
+        Load the model from Huggingface Hub
+        :return:
+        """
+        pass
+
 
 class LocalModelChecker:
     """
     Local model checker
     """
-    def __init__(self, model_name, local_model_path):
+    def __init__(self, model_name: str, local_model_path: str):
         self.model_name = model_name
         self.local_model_path = local_model_path
+        self.model_file_path = os.path.join(self.local_model_path, self.model_name)
 
     def check_model_exists(self):
         model_file_path = os.path.join(self.local_model_path, self.model_name)
@@ -99,3 +134,16 @@ class LocalModelChecker:
             return True
         else:
             return False
+
+    def load_model(self):
+        snapshots = os.path.join(self.model_file_path, "snapshots/")
+        random_file_path = get_random_file(snapshots)
+        print(self.model_file_path)
+        print(snapshots)
+        print(random_file_path)
+        return ZeroShotClassifier(model_path=random_file_path)
+
+# if __name__ == '__main__':
+#     local_checker = LocalModelChecker("models--facebook--bart-basec", local_model_path="../resources/")
+#     model = local_checker.load_model()
+#     print(model)

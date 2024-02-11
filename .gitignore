@@ -1,0 +1,6 @@
+/dist/
+/interview.egg-info/
+/build/
+/.idea/
+/resources/
+/src/__pycache__/

@@ -14,8 +14,12 @@ class ZeroShotClassifier:
 
 if __name__ == '__main__':
 
+    # facebook/bart-base
+    # facebook/bart-large
+    # facebook/bart-large-mnli
+
     #TODO Full path needed maybe there should be function which takes the directory and the directory in the end of the file
-    model_path = '/resources/models--facebook--bart-basea/snapshots/aadd2ab0ae0c8268c7c9693540e9904811f36177'
+    model_path = "facebook/bart-large-mnli"
     zero_shot_classifier = ZeroShotClassifier(model_path)
 
     input_text = "I'm really interest on the python programming language and the front-end development"

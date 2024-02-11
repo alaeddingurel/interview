@@ -1,5 +1,3 @@
-# setup.py
-
 from setuptools import setup, find_packages
 
 setup(
@@ -11,9 +9,10 @@ setup(
             "interview-service=src.service:main"
         ]
     },
-    # install_requires=[
-    #     "fastapi",
-    #     "uvicorn"
-    #     # Add any other dependencies your service requires
-    # ]
+    install_requires=[
+        "fastapi",
+        "uvicorn",
+        "transformers",
+        "google-cloud-storage"
+    ]
 )
