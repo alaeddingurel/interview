@@ -46,3 +46,35 @@ Available Models:
         - we could add other models.
 
 
+This code base assumes model will be a huggingface model and 
+it will have a structure below:
+
+- model_name
+  - .no_exist
+  - refs
+  - snapshots
+
+While reading the code, this code doesn't handle multiple snapshots for Huggingface
+model.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    TODO:
+        - There are repetitive parts in model downloader Abstract Class could be useful
+
+
+Parametrization of the sentiments and intents is important because while we deploy it we could need customize 
+the sentiments and intents.

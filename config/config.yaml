@@ -1,0 +1,5 @@
+bucket_name: "bart-model"
+model_name: "models--facebook--bart-large-mnli"
+sample_data_path: "../data/conversation.json"
+sentiments: ["positive", "negative", "neutral"]
+intents: ["buy", "upgrade", "exchange", "repair"]
