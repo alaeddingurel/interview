@@ -1,5 +1,7 @@
 bucket_name: "bart-model"
 model_name: "models--facebook--bart-large-mnli"
-sample_data_path: "../data/conversation.json"
+sample_data_path: "data/conversation.json"
 sentiments: ["positive", "negative", "neutral"]
 intents: ["buy", "upgrade", "exchange", "repair"]
+host: "127.0.0.1"
+port: "8002"

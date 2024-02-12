@@ -4,7 +4,7 @@ from src.utils import read_transcript, merge_transcript, read_yaml_file
 
 def main():
     # Read Yaml File
-    config = read_yaml_file("../config/config.yaml")
+    config = read_yaml_file("config/config.yaml")
 
     # Parameters
     sentiments = config["sentiments"]
@@ -18,7 +18,7 @@ def main():
 
     result_dict = {"sentiment": "", "intent": ""}
 
-    model_manager = ModelManager(bucket_name, model_name, local_model_path="../resources/")
+    model_manager = ModelManager(bucket_name, model_name, local_model_path="resources/")
     zero_shot_classifier = model_manager.check_and_download_model()
 
     sentiment_result = zero_shot_classifier.classify(merged_transcript, sentiments)

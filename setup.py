@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     entry_points={
         "console_scripts": [
-            "interview-service=src.service:main"
+            "interview-service=src.main:main"
         ]
     },
     install_requires=[

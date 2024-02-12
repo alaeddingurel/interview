@@ -1,4 +1,5 @@
-from src.gcs_model_downloader import GCSModelDownloader, LocalModelChecker, HuggingFaceModelDownloader
+from src.model_downloader import GCSModelDownloader, LocalModelChecker, HuggingFaceModelDownloader
+
 
 class ModelManager:
     def __init__(self, bucket_name, model_name, local_model_path):
