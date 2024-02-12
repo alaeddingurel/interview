@@ -49,6 +49,12 @@ There could be many misunderstanding about it, and it is hard to make it work wi
 We're creating a page for it to client or user in the company will have a proper guidance to use the api.
 
 
+## Installation
+
+### Using Github
+
+  
+
 ## Usage
 
 There are two modes of this application `sample` and `service`.
