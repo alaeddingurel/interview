@@ -53,7 +53,36 @@ We're creating a page for it to client or user in the company will have a proper
 
 ### Using Github
 
-  
+
+1. Clone the repository from Github:
+
+    ```git clone https://github.com/alaeddingurel/interview.git```
+
+2. Change the directory into `interview` folder
+
+    ``` cd interview ```
+
+3. Download using setup.py
+
+    ```python setup.py install```
+
+### Using Wheel
+
+
+1. Download wheel file from the v.0.0.1:
+
+
+2. Change the directory into `interview` folder
+
+    ``` pip install whl_file ```
+
+
+### Install from source
+
+1. You can also install this repository from Github.
+
+    ```pip install git+https://github.com/alaeddingurel/interview.git```
+
 
 ## Usage
 
