@@ -6,7 +6,6 @@ from src.model_manager import ModelManager
 from src.utils import read_yaml_file
 import uvicorn
 from fastapi.staticfiles import StaticFiles
-import interview.src.service
 
 
 class InputText(BaseModel):
