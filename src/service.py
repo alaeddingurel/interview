@@ -13,7 +13,7 @@ class InputText(BaseModel):
 
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("static/", StaticFiles(directory="static"), name="static")
 
 
 config = read_yaml_file("config/config.yaml")
