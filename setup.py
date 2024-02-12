@@ -4,7 +4,6 @@ setup(
     name="interview",
     version="0.1",
     packages=find_packages(),
-    package_data={'': ['static/*']},
     entry_points={
         "console_scripts": [
             "interview-service=src.main:main"
