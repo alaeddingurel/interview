@@ -101,7 +101,7 @@ class HuggingFaceModelDownloader:
         self.local_model_path = local_model_path
         self.model_file_path = os.path.join(local_model_path, model_name)
 
-    def check_model_exists(self):
+    def check_model_exists_and_load(self):
         """
         Check model exist in Huggingface Hub
         :return:
