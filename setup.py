@@ -14,5 +14,7 @@ setup(
         "uvicorn",
         "transformers",
         "google-cloud-storage"
+        "pydantic"
+        "setuptools"
     ]
 )

@@ -1,32 +1,48 @@
-# TEB Case Project
-This project is for the interview for TEB
+# TEB Zero-Shot Classification Case Project
+
+<div style="text-align:center;">
+    <img src="static/zero_shot_classification.jpg" width="300" height="300">
+</div>
+
+This project is for the TEB Arf interview. Project 
+basically 
+constructs a zero-shot classification API.
+
+
 
 ## Table of Contents
-
+- [Requirements](#requirements)
 - [Introduction](#introduction)
-- [Advantages and Disadvantages of Zero-Shot](#advantages-and-disadvantages-of-zero-shot)
-- [Making the System Turkish](#making-the-system-turkish)
-- [Problems and Considerations for Speech-To-Text and Inference System](#problems-and-considerations-for-speech-to-text-and-inference-system)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Questions](#questions)
 - [TODO](#todo)
-- [Usage](#usage)
-- [Installation](#installation)
-- [Contributing](#contributing)
 - [License](#license)
 
-Some Possible improvements:
 
-    - OnnxRuntime Model
-    - Bulk Inference (Batch Inference)
+## Requirements
+
+```
+uvicorn~=0.27.0.post1
+fastapi~=0.109.2
+pydantic~=2.6.1
+transformers~=4.37.2
+setuptools~=68.2.2
+pyyaml~=6.0.1
+google-cloud-storage~=2.14.0
+```
+
+## Introduction
+
+<div style="text-align:center;">
+    <img src="static/diagram.png" width="1920" height="1080">
+</div>
 
 
 Available Models in GCS Bucket:
     
     - models--facebook--bart-base
-    - models--facebook--bart-large-mnli 
-
-    TODO:
-        - we could add other models.
+    - models--facebook--bart-large-mnli
 
 
 This code base assumes model will be a huggingface model and 
@@ -37,19 +53,20 @@ it will have a structure below:
   - refs
   - snapshots
 
-While reading the code, this code doesn't handle multiple snapshots for Huggingface
+This code actually doesn't handle multiple snapshots for Huggingface
 model.
 
 Parametrization of the sentiments and intents is important because while we deploy it for various use cases, 
 then we could need customize the sentiments and intents, It will ease the deployment process.
 
-
-I'm making a static website about the API, because while sharing API and its related tools and documentation.
-There could be many misunderstanding about it, and it is hard to make it work without proper communication.
-We're creating a page for it to client or user in the company will have a proper guidance to use the api.
+I'm making a static website about the API, because while only sharing API and its related tools, there could be many misunderstanding about it, and it is hard to make it work without proper communication.
+We're creating a homepage for these purposes for client or user in the compan. They will have a proper guidance to use the Zero-Shot Classification API.
 
 
 ## Installation
+
+We have only two installation options. Installation from source code will be available 
+for the new versions of the API.
 
 ### Using Github
 
@@ -70,18 +87,11 @@ We're creating a page for it to client or user in the company will have a proper
 
 
 1. Download wheel file from the v.0.0.1:
-
+    You could find it in https://github.com/alaeddingurel/interview/releases
 
 2. Change the directory into `interview` folder
 
     ``` pip install whl_file ```
-
-
-### Install from source
-
-1. You can also install this repository from Github.
-
-    ```pip install git+https://github.com/alaeddingurel/interview.git```
 
 
 ## Usage
@@ -108,7 +118,10 @@ You could run it by using the command below:
 interview-service --mode service
 ```
 
-You can check the possible endpoints for the API. 
+You can check the possible endpoints for the API.
+
+If you want to change the configurations for the project. You can change 
+the `config.yaml` in the config `config` folder.
 
 ## Questions
 
@@ -120,7 +133,7 @@ reason we have the advantage of reduces cost and time for deployment. We could m
 using zero-shot approach.
 
 
-- One of the disadvantage is performance of the model. Because it hasn't been finetuned by any labelled data, the 
+- One of the disadvantage is the performance of the model. Because it hasn't been finetuned by any labelled data, the 
 probability distribution of the models output wouldn't be that much great.
 
 
@@ -189,6 +202,12 @@ could change or diminish according to the external factors like changing the lan
         - We could add other functionality like using multiple models outputs and merging them such as
             mean averaging, weighted average and other possible methodologies.
         - Host and Port could be parametrized
+
+
+Some Possible improvements:
+
+    - OnnxRuntime Model
+    - Bulk Inference (Batch Inference)
 
 ### LICENSE
 This project is licensed under MIT License.

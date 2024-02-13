@@ -1,11 +1,9 @@
-from google.cloud import storage
-from google.api_core import page_iterator
-from google.cloud import storage
-from src.classifier import ZeroShotClassifier
-from src.utils import get_random_file
-
 import os
 
+from google.cloud import storage
+
+from src.classifier import ZeroShotClassifier
+from src.utils import get_random_file
 
 class GCSModelDownloader:
     def __init__(self, bucket_name: str, model_name: str, local_model_path: str):

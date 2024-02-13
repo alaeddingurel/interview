@@ -16,8 +16,6 @@ def main():
     transcript_data = read_transcript(sample_data_path)
     merged_transcript = merge_transcript(transcript_data)
 
-    result_dict = {"sentiment": "", "intent": ""}
-
     model_manager = ModelManager(bucket_name, model_name, local_model_path="resources/")
     zero_shot_classifier = model_manager.check_and_download_model()
 
@@ -28,6 +26,7 @@ def main():
     top_intent = intent_result["labels"][0] if intent_result["labels"] else None
 
     result_dict = {"sentiment": top_sentiment, "intent": top_intent}
+
     print(result_dict)
 
 

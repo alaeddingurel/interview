@@ -1,11 +1,13 @@
+import uvicorn
+
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+
+from pydantic import BaseModel
 
 from src.model_manager import ModelManager
 from src.utils import read_yaml_file
-import uvicorn
-from fastapi.staticfiles import StaticFiles
 
 
 class InputText(BaseModel):
@@ -62,6 +64,9 @@ from typing import List
 
 @app.post("/bulk_predict/")
 async def bulk_predict(input_texts: List[InputText]):
+    """
+    This function same as predic function but takes a list of InputText objects
+    """
     results = []
 
     for input_text in input_texts:

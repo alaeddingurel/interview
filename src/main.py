@@ -1,19 +1,16 @@
 import argparse
-from src import service
-from src import sample_evaluation
+
+from src import service, sample_evaluation
 
 def main():
-    # Create argument parser
     parser = argparse.ArgumentParser(description='Interview script')
 
-    # Add mode argument
+    # If nothing provided, service will work
     parser.add_argument('--mode', choices=['service', 'sample'], default='service',
-                        help='Specify the mode (service or sample)')
+                        help='service or sample mode')
 
-    # Parse command-line arguments
     args = parser.parse_args()
 
-    # Execute behavior based on mode
     if args.mode == 'service':
         service.main()
     elif args.mode == 'sample':
