@@ -196,17 +196,17 @@ could change or diminish according to the external factors like changing the lan
 
 
 ### TODO
-    TODO:
-        - There are repetitive parts in model downloader. Some abstraction could be useful
-        - We need to add unit test in order to test Manager and other functionality.
-        - We could add other functionality like using multiple models outputs and merging them such as
-            mean averaging, weighted average and other possible methodologies.
-        - Host and Port could be parametrized
+
+    - There are repetitive parts in model downloader. Some abstraction could be useful
+    - We need to add unit test in order to test Manager and other functionality.
+    - We could add other functionality like using multiple models outputs and merging them such as
+        mean averaging, weighted average and other possible methodologies.
+    - Host and Port could be parametrized
 
 
-Some Possible improvements:
+Some possible improvements:
 
-    - OnnxRuntime Model
+    - OnnxRuntime
     - Bulk Inference (Batch Inference)
 
 ### LICENSE
