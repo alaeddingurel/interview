@@ -1,6 +1,7 @@
 import yaml
 import os
 import random
+import json
 
 def get_random_file(directory):
     """
@@ -15,8 +16,6 @@ def get_random_file(directory):
         return os.path.join(directory, random.choice(files))
     else:
         return None
-
-import json
 
 def read_transcript(file_path):
     with open(file_path, 'r') as file:
@@ -35,8 +34,3 @@ def read_yaml_file(file_path):
     with open(file_path, 'r') as file:
         data = yaml.safe_load(file)
     return data
-
-if __name__ == "__main__":
-    yaml_file_path = "config/config.yaml"
-    yaml_data = read_yaml_file(yaml_file_path)
-    print(yaml_data)

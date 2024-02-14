@@ -2,22 +2,23 @@ from src.model_manager import ModelManager
 from src.utils import read_transcript, merge_transcript, read_yaml_file
 
 
-def main():
-    # Read Yaml File
-    config = read_yaml_file("config/config.yaml")
+def evaluate(config, zero_shot_classifier):
+    """
+    This function just makes a sample evaluation for Task 1
+    """
 
     # Parameters
     sentiments = config["sentiments"]
     intents = config["intents"]
     sample_data_path = config["sample_data_path"]
-    bucket_name = config["bucket_name"]
-    model_name = config["model_name"]
 
     transcript_data = read_transcript(sample_data_path)
     merged_transcript = merge_transcript(transcript_data)
 
-    model_manager = ModelManager(bucket_name, model_name, local_model_path="resources/")
-    zero_shot_classifier = model_manager.check_and_download_model()
+    # print("evaluating1...")
+    # model_manager = ModelManager(bucket_name, model_name, local_model_path="resources/")
+    # zero_shot_classifier = model_manager.check_and_download_model()
+    # print("evaluating2...")
 
     sentiment_result = zero_shot_classifier.classify(merged_transcript, sentiments)
     intent_result = zero_shot_classifier.classify(merged_transcript, intents)
@@ -28,7 +29,3 @@ def main():
     result_dict = {"sentiment": top_sentiment, "intent": top_intent}
 
     print(result_dict)
-
-
-if __name__ == '__main__':
-    main()

@@ -13,8 +13,8 @@ setup(
         "fastapi",
         "uvicorn",
         "transformers",
-        "google-cloud-storage"
-        "pydantic"
-        "setuptools"
+        "google-cloud-storage",
+        "pydantic",
+        "setuptools",
     ]
 )

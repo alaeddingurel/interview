@@ -1,3 +1,5 @@
+from typing import List
+
 import uvicorn
 
 from fastapi import FastAPI, HTTPException
@@ -29,7 +31,6 @@ model_name = config["model_name"]
 host = config["host"]
 port = config["port"]
 
-
 # Model Manager to handle to download and load models from Local, GCS Bucket or Huggingface Hub
 model_manager = ModelManager(bucket_name, model_name, local_model_path="resources/")
 zero_shot_classifier = model_manager.check_and_download_model()
@@ -41,9 +42,6 @@ async def homepage():
 
 @app.post("/predict/")
 async def predict(input_text: InputText):
-
-    result_dict = {"sentiments": "", "intents": ""}
-
     try:
         sentiment_result = zero_shot_classifier.classify(input_text.text, sentiments)
         intent_result = zero_shot_classifier.classify(input_text.text, intents)
@@ -57,9 +55,6 @@ async def predict(input_text: InputText):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
-from typing import List
 
 
 @app.post("/bulk_predict/")
@@ -91,8 +86,7 @@ async def bulk_predict(input_texts: List[InputText]):
 
 
 def main():
+    print("Loading model...")
     uvicorn.run(app, host=host, port=port)
 
 
-if __name__ == '__main__':
-    main()

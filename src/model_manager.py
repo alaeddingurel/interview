@@ -2,6 +2,10 @@ from src.model_downloader import GCSModelDownloader, LocalModelChecker, HuggingF
 
 
 class ModelManager:
+    """
+    This class is responsible for downloading and loading models from various sources
+    Some of these sources are local, gcs bucket and huggingface hub
+    """
     def __init__(self, bucket_name, model_name, local_model_path):
         self.bucket_name = bucket_name
         self.model_name = model_name
@@ -22,11 +26,11 @@ class ModelManager:
             model = self.gcs_downloader.load_model()
             print(f"Model {self.model_name} has been loaded.")
             return model
+        elif self.huggingface_downloader.check_model_exists():
+            model = self.huggingface_downloader.load_model()
+            print(f"Model {self.model_name} found in HuggingFace Hub. Downloading...")
+            print(f"Model {self.model_name} has been loaded.")
+            return model
         else:
             print("Model not found.")
             return False
-
-
-#if __name__ == '__main__':
-#    model = ModelManager("bart-model", "models--facebook--bart-basec", local_model_path="../resources/").check_and_download_model()
-#    print(model)

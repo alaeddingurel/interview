@@ -35,7 +35,7 @@ google-cloud-storage~=2.14.0
 ## Introduction
 
 <div style="text-align:center;">
-    <img src="static/diagram.png" width="1920" height="1080">
+    <img src="static/diagram.jpg" width="1920" height="1080">
 </div>
 
 

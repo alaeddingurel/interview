@@ -96,24 +96,28 @@ class GCSModelDownloader:
 
 
 class HuggingFaceModelDownloader:
+    """
+    Hugging Face Downloader class
+    """
     def __init__(self, model_name: str, local_model_path: str):
         self.model_name = model_name
         self.local_model_path = local_model_path
         self.model_file_path = os.path.join(local_model_path, model_name)
 
-    def check_model_exists_and_load(self):
+    def check_model_exists(self):
         """
-        Check model exist in Huggingface Hub
+        Check model exist in Huggingface Hub (Pseudo Check)
         :return:
         """
-        pass
+        return True
 
     def load_model(self):
         """
-        Load the model from Huggingface Hub
-        :return:
+        Load the model
         """
-        pass
+        return ZeroShotClassifier(model_path=self.model_name)
+
+
 
 
 class LocalModelChecker:
@@ -126,6 +130,9 @@ class LocalModelChecker:
         self.model_file_path = os.path.join(self.local_model_path, self.model_name)
 
     def check_model_exists(self):
+        """
+        Check if model exists in local
+        """
         model_file_path = os.path.join(self.local_model_path, self.model_name)
 
         if os.path.exists(model_file_path):
@@ -134,14 +141,9 @@ class LocalModelChecker:
             return False
 
     def load_model(self):
+        """
+        Load the model from given checkpoint
+        """
         snapshots = os.path.join(self.model_file_path, "snapshots/")
         random_file_path = get_random_file(snapshots)
-        print(self.model_file_path)
-        print(snapshots)
-        print(random_file_path)
         return ZeroShotClassifier(model_path=random_file_path)
-
-# if __name__ == '__main__':
-#     local_checker = LocalModelChecker("models--facebook--bart-basec", local_model_path="../resources/")
-#     model = local_checker.load_model()
-#     print(model)

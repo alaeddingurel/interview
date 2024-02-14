@@ -2,6 +2,7 @@ import argparse
 
 from src import service, sample_evaluation
 
+
 def main():
     parser = argparse.ArgumentParser(description='Interview script')
 
@@ -14,7 +15,9 @@ def main():
     if args.mode == 'service':
         service.main()
     elif args.mode == 'sample':
-        sample_evaluation.main()
+        # Model Manager initialized in service.py while imported then we use this object in sample evaluation
+        sample_evaluation.evaluate(zero_shot_classifier=service.zero_shot_classifier, config=service.config)
+
 
 if __name__ == '__main__':
     main()
